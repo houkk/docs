@@ -16,6 +16,7 @@ grant.type | `string` | Token 类型
 grant.token | `string` | Token
 
 #### Example Request
+
 ```json
 {
   "header": {
@@ -36,7 +37,9 @@ grant.token | `string` | Token
   }
 }
 ```
+
 #### Example Response
+
 ```json
 {
   "header": {

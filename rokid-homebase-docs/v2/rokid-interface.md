@@ -1,25 +1,6 @@
-### 目录
+# Interface
 
--   [终端能力](#终端能力)
-  - [Switch 开关状态](#switch-开关状态)
-  - [MotionSwitch 行为状态](#motionswitch-行为状态)
-  - [Position 位置百分比状态](#position-位置百分比状态)
-  - [Color 颜色状态](#color-颜色状态)
-  - [ColorTemperature 色温状态](#colortemperature-色温状态)
-  - [Brightness 亮度状态](#brightness-亮度状态)
-  - [Mode 模式状态](#mode-模式状态)
-  - [SwingMode 转向状态](#swingmode-转向状态)
-  - [Humidity 湿度状态](#humidity-湿度状态)
-  - [Temperature 温度状态](#temperature-温度状态)
-  - [FanSpeed 风速状态](#fanspeed-风速状态)
-  - [Volume 音量状态](#volume-音量状态)
-  - [Media.TVChannel 频道状态](#mediatvchannel-频道状态)
-  - [Media.Music 音乐控制](#mediamusic-音乐控制)
-  - [PlaybackControl 媒体播放状态](#playbackcontrol-媒体播放状态)
-  - [PlaybackMode 媒体播放模式状态](#playbackmode-媒体播放模式状态)
-
-
-### 终端能力
+## 终端能力
 
 终端能力 Interface 代表终端具备的变化状态值。
 
@@ -27,15 +8,15 @@
 
 终端能力的状态值可以是 number 与 enum 或者特殊描述符类型；
 
- - Number类型接口: 可以具有 Set 和 Adjust 控制命令；Set 为设为绝对期望值, Adjust为 delta 如 +1, -1 等相对值
-    - Percentage: 取值 0 到 100, Adjust 默认步长为 10 
-    - RGB: 取值 0 到 0xFFFFFF
-- Enum 类型接口: 具体的 Enum 值即为命令（相当于 Set 但是枚举了所有值） 
+- Number类型接口: 可以具有 Set 和 Adjust 控制命令；Set 为设为绝对期望值, Adjust为 delta 如 +1, -1 等相对值
+  - Percentage: 取值 0 到 100, Adjust 默认步长为 10
+  - RGB: 取值 0 到 0xFFFFFF
+- Enum 类型接口: 具体的 Enum 值即为命令（相当于 Set 但是枚举了所有值）
 - 描述符类型接口:是值的说法无法枚举、也不是 Number 类型的类型, 如歌曲、电视频道, 具有 Set控制命令
 
 > Beta 版尚不支持向若琪问询终端状态
 
-#### Switch 开关状态
+### Switch 开关状态
 
 类型: Enum
 
@@ -47,6 +28,7 @@ Switch.On | 打开终端
 Switch.Off | 关闭终端
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -70,7 +52,7 @@ Switch.Off | 关闭终端
 }
 ```
 
-#### MotionSwitch 行为状态
+### MotionSwitch 行为状态
 
 类型: Enum
 
@@ -84,6 +66,7 @@ MotionSwitch.On | 终端开始运动
 MotionSwitch.Off | 终端停止运动
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -107,7 +90,7 @@ MotionSwitch.Off | 终端停止运动
 }
 ```
 
-#### Position 位置百分比状态
+### Position 位置百分比状态
 
 类型: percentage
 
@@ -118,13 +101,14 @@ MotionSwitch.Off | 终端停止运动
 Position.Set | 设置为指定值
 Position.Adjust | 通过相对值调整
 
-##### Set Payload
+#### Set Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
 value | `number` | 百分比
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -150,13 +134,14 @@ value | `number` | 百分比
 }
 ```
 
-##### Adjust Payload
+#### Adjust Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
 delta | `number` | 相对值
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -182,7 +167,7 @@ delta | `number` | 相对值
 }
 ```
 
-#### Color 颜色状态
+### Color 颜色状态
 
 类型: Number
 
@@ -193,13 +178,14 @@ delta | `number` | 相对值
 Color.Set | 设置为指定值
 Color.SetRandom | 由 Skill 设置一个随机色值
 
-##### Set Payload
+#### Set Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
 value | `number` | 颜色 RGB Hex 值
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -225,9 +211,10 @@ value | `number` | 颜色 RGB Hex 值
 }
 ```
 
-##### SetRandom Payload
+#### SetRandom Payload
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -251,7 +238,7 @@ value | `number` | 颜色 RGB Hex 值
 }
 ```
 
-#### ColorTemperature 色温状态
+### ColorTemperature 色温状态
 
 类型: percentage
 
@@ -264,13 +251,14 @@ ColorTemperature.SetMax |
 ColorTemperature.SetMin |
 ColorTemperature.Adjust |
 
-##### Set Payload
+#### Set Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
 value | `number` | 百分比
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -296,9 +284,10 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMax Payload
+#### SetMax Payload
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -322,9 +311,10 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMin Payload
+#### SetMin Payload
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -350,13 +340,14 @@ value | `number` | 百分比
 }
 ```
 
-##### Adjust Payload
+#### Adjust Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
 delta | `number` | 相对值
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -382,7 +373,7 @@ delta | `number` | 相对值
 }
 ```
 
-#### Brightness 亮度状态
+### Brightness 亮度状态
 
 类型: percentage
 
@@ -395,13 +386,14 @@ Brightness.SetMax |
 Brightness.SetMin |
 Brightness.Adjust |
 
-##### Set Payload
+#### Set Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
 value | `number` | 百分比
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -427,9 +419,10 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMax Payload
+#### SetMax Payload
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -453,9 +446,10 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMin Payload
+#### SetMin Payload
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -479,13 +473,14 @@ value | `number` | 百分比
 }
 ```
 
-##### Adjust Payload
+#### Adjust Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
 delta | `number` | 相对值
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -511,7 +506,7 @@ delta | `number` | 相对值
 }
 ```
 
-#### Mode 模式状态
+### Mode 模式状态
 
 类型: enum
 
@@ -530,6 +525,7 @@ Mode.Energy | 省电模式
 Mode.Sleep | 睡眠模式
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -553,7 +549,7 @@ Mode.Sleep | 睡眠模式
 }
 ```
 
-#### SwingMode 转向状态
+### SwingMode 转向状态
 
 类型: enum
 
@@ -570,6 +566,7 @@ SwingMode.Vertical |
 SwingMode.VerticalOff |
 
 命令示例：
+
 ```json
 {
   "header": {
@@ -594,7 +591,7 @@ SwingMode.VerticalOff |
 ```
 
 <!--
-## CustomMode 可自定义的模式状态
+# CustomMode 可自定义的模式状态
 类型: 模式描述符
 
 可对应说法: 若琪, 打开舞台灯的跑马灯模式；
@@ -609,7 +606,8 @@ CustomMode 描述符
 --- | --- | ---
 mode.type | custom, preset |
 mode.name | `string` | -->
-#### Humidity 湿度状态
+
+### Humidity 湿度状态
 
 类型: percentage, unit: relative humidity
 
@@ -622,7 +620,7 @@ Humidity.SetMax |
 Humidity.SetMin |
 Humidity.Adjust |
 
-##### Set Payload
+#### Set Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
@@ -655,7 +653,7 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMax Payload
+#### SetMax Payload
 
 命令示例：
 
@@ -682,7 +680,7 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMin Payload
+#### SetMin Payload
 
 命令示例：
 
@@ -709,7 +707,7 @@ value | `number` | 百分比
 }
 ```
 
-##### Adjust Payload
+#### Adjust Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
@@ -742,7 +740,7 @@ delta | `number` | 相对值
 }
 ```
 
-#### Temperature 温度状态
+### Temperature 温度状态
 
 类型: number, Unit: Celsius
 
@@ -755,8 +753,7 @@ Temperature.SetMax |
 Temperature.SetMin |
 Temperature.Adjust |
 
-
-##### Set Payload
+#### Set Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
@@ -789,7 +786,7 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMax Payload
+#### SetMax Payload
 
 命令示例：
 
@@ -816,7 +813,7 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMin Payload
+#### SetMin Payload
 
 命令示例：
 
@@ -843,7 +840,7 @@ value | `number` | 百分比
 }
 ```
 
-##### Adjust Payload
+#### Adjust Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
@@ -876,7 +873,7 @@ delta | `number` | 相对值
 }
 ```
 
-#### FanSpeed 风速状态
+### FanSpeed 风速状态
 
 类型: percentage
 
@@ -892,8 +889,7 @@ FanSpeed.SetHigh | 调到高风模式
 FanSpeed.SetLow | 调到低风模式
 FanSpeed.SetMedium | 调到中风模式
 
-
-##### Set Payload
+#### Set Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
@@ -926,7 +922,7 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMax Payload
+#### SetMax Payload
 
 命令示例：
 
@@ -953,7 +949,7 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMin Payload
+#### SetMin Payload
 
 命令示例：
 
@@ -980,7 +976,7 @@ value | `number` | 百分比
 }
 ```
 
-##### Adjust Payload
+#### Adjust Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
@@ -1012,7 +1008,8 @@ delta | `number` | 相对值
   }
 }
 ```
-##### SetHigh Payload
+
+#### SetHigh Payload
 
 命令示例：
 
@@ -1039,7 +1036,7 @@ delta | `number` | 相对值
 }
 ```
 
-##### SetLow Payload
+#### SetLow Payload
 
 命令示例：
 
@@ -1066,7 +1063,7 @@ delta | `number` | 相对值
 }
 ```
 
-##### SetMedium Payload
+#### SetMedium Payload
 
 命令示例：
 
@@ -1093,7 +1090,7 @@ delta | `number` | 相对值
 }
 ```
 
-#### Mute 静音状态
+### Mute 静音状态
 
 类型: enum
 
@@ -1104,7 +1101,7 @@ delta | `number` | 相对值
 Mute.On | 设置静音
 Mute.Off | 取消静音
 
-##### On Payload
+#### On Payload
 
 命令示例：
 
@@ -1132,7 +1129,7 @@ Mute.Off | 取消静音
 }
 ```
 
-##### Off Payload
+#### Off Payload
 
 命令示例：
 
@@ -1160,9 +1157,7 @@ Mute.Off | 取消静音
 }
 ```
 
-
-
-#### Volume 音量状态
+### Volume 音量状态
 
 类型: percentage
 
@@ -1175,7 +1170,7 @@ Volume.SetMax | 调到最大音量
 Volume.SetMin | 调到最小音量
 Volume.Adjust | 调节音量
 
-##### Set Payload
+#### Set Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
@@ -1208,7 +1203,7 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMax Payload
+#### SetMax Payload
 
 命令示例：
 
@@ -1235,7 +1230,7 @@ value | `number` | 百分比
 }
 ```
 
-##### SetMin Payload
+#### SetMin Payload
 
 命令示例：
 
@@ -1262,7 +1257,7 @@ value | `number` | 百分比
 }
 ```
 
-##### Adjust Payload
+#### Adjust Payload
 
 字段 | 类型 | 描述
 --- | --- | ---
@@ -1295,7 +1290,7 @@ delta | `number` | 相对值
 }
 ```
 
-#### Media.TVChannel 频道状态
+### Media.TVChannel 频道状态
 
 类型: channel descriptor
 
@@ -1309,14 +1304,12 @@ Media.TVChannel.Next |
 Media.TVChannel.Previous |
 Media.TVChannel.Set |
 
-
 字段名 | 类型 | 描述
 --- | --- | ---
 tvChannel.name | `string` |
 tvChannel.code | `string` |
 
-
-##### Set Payload
+#### Set Payload
 
 命令示例：
 
@@ -1348,7 +1341,7 @@ tvChannel.code | `string` |
 }
 ```
 
-##### Previous Payload
+#### Previous Payload
 
 命令示例：
 
@@ -1375,7 +1368,7 @@ tvChannel.code | `string` |
 }
 ```
 
-##### Next Payload
+#### Next Payload
 
 命令示例：
 
@@ -1402,7 +1395,7 @@ tvChannel.code | `string` |
 }
 ```
 
-#### Media.Music 音乐控制
+### Media.Music 音乐控制
 
 类型: song descriptor
 型: song descriptor
@@ -1426,7 +1419,7 @@ music.album | `string` |
 music.genre | `string` |
 music.source | `string` |
 
-#### PlaybackControl 媒体播放状态
+### PlaybackControl 媒体播放状态
 
 类型: enum
 
@@ -1439,7 +1432,7 @@ music.source | `string` |
 PlaybackControl.Play |
 PlaybackControl.Pause |
 
-#### PlaybackMode 媒体播放模式状态
+### PlaybackMode 媒体播放模式状态
 
 类型: enum
 

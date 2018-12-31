@@ -1,4 +1,4 @@
-### 终端
+# 终端
 
 若琪 IoT Skill 的对接的基本单元为终端，终端可以是一个真实的终端，也可以表示一个智能场景、应用。每一个终端需要说明它们具备的能力接口（Interface），一个能力接口可代表终端的一个可问询状态值，如一个终端具有温度接口（Temperature Interface），我们可以对若琪说："若琪，现在的温度是多少？"，来获取终端提供的温度接口的值；也可以对若琪说："若琪，把温度调高一点"，来调用温度接口提供的控制温度能力。
 
@@ -14,10 +14,9 @@ additionalInfo | key-value pairs | 一组和终端关联的键值对，若琪每
 capabilities | `Capability[]` | 一组终端能力描述符
 states | `InterfaceState[]` | 一组终端能力接口状态描述符
 
-
 > 注意：displayName 和 recommendRoomName 中不得包含数字和特殊字符
 
-#### 能力描述 Capability
+## 能力描述 Capability
 
 终端能力 Interface 代表终端具备的变化状态值。
 
@@ -26,6 +25,7 @@ states | `InterfaceState[]` | 一组终端能力接口状态描述符
 当这个能力会主动推送状态时（proactivelyReported），那么就可以将这个终端状态作为一个自动化操作的触发器，如一个自动化操作是“当在早上家门关闭时，关闭家里所有灯”，那么就需要有一个“家门”的 Switch 为 proactivelyReported，当在早上它的值设为 off 时，该自动化操作就会被触发。
 
 终端能力的状态值可以是 number 与 enum 或者特殊描述符类型；
+
 - Number 类型接口：可以具有 Set 和 Adjust 控制命令；Set 为设为绝对期望值，Adjust 为 delta 如 +1，-1 等相对值
   - Percentage: 取值 0 到 100，Adjust 默认步长为 10
   - RGB: 取值 0 到 0xFFFFFF
@@ -40,7 +40,7 @@ supportedOperations | `string[]` | 相应能力接口类型中支持的能力操
 isProactivelyReported | `bool`，默认 `false` | 是否支持由产商推送终端新状态，如果支持即可作为自动化的触发器
 isRetrievable | `bool`，默认 `false` | 是否支持若琪发起状态查询请求，如果支持即可向若琪问询终端状态
 
-#### 能力状态 InterfaceState
+## 能力状态 InterfaceState
 
 字段名 | 类型 | 描述
 --- | --- | ---

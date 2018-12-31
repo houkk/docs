@@ -4,13 +4,13 @@
 
 Rokid IoT EventGateway 使用 HTTP 状态码来表述本次事件请求结果，当状态码为 202 时（成功）回复体为空：
 
-HTTP 状态码 |	场景
+HTTP 状态码 | 场景
 --- | ---
-202 Accepted |	Rokid EventGateway 收到了请求，并且请求体合法；但是不代表已经处理了请求
-401 Unauthorized |	Skill 启用，但是 Token 已经过期
-403 Forbidden |	Skill 已经停用，或者 Token 无效
-400 Bad Request |	请求体不符合预设格式
-422 Unprocessible Entity |	请求体符合格式，但是请求内容无法处理
+202 Accepted | Rokid EventGateway 收到了请求，并且请求体合法；但是不代表已经处理了请求
+401 Unauthorized | Skill 启用，但是 Token 已经过期
+403 Forbidden | Skill 已经停用，或者 Token 无效
+400 Bad Request | 请求体不符合预设格式
+422 Unprocessible Entity | 请求体符合格式，但是请求内容无法处理
 
 ## ChangeReport
 

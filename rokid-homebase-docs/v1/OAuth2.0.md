@@ -1,31 +1,25 @@
-### 目录
-- [HTTP 远程驱动 OAuth 2.0 接入](#http-远程驱动-oauth-2.0-接入)
-  - [接口1. `OAuth`](#access1)
-  - [接口2: `OAuthGetToken`](#access2)
-  - [接口3: `OAuthRefresh`](#access3)
-
-### HTTP 远程驱动 OAuth 2.0 接入
+# HTTP 远程驱动 OAuth 2.0 接入
 
 基本流程与 [OAuth](./oauth.md) 类试;
 
 OAuth 2.0 需要实现 3 个 command 接口
 
-#### <span id = "access1">接口1. `OAuth`</span>
+## 接口1. `OAuth`
 
 输入参数
 
- * command {String} 方法名, `OAuth`
- * params {Object}
- * params.callbackURL {String} 授权回调 URL
+* command {String} 方法名, `OAuth`
+* params {Object}
+* params.callbackURL {String} 授权回调 URL
 
 输出
 
 * status {Number} 0 表示成功
 * data {String} 授权跳转 URL
 
-
 Sample
-```
+
+```json
 {
   "command": "OAuth",
   "params": {
@@ -33,17 +27,17 @@ Sample
   }
 }
 ```
+
 返回结果，JSON格式
 
-```
+```json
 {
   "status": 0,
   "data": "http://my.driver.com/xxx?callbackurl=http%3A%2F%2Fs.rokidcdn.com%2Fxxxxxx"
 }
 ```
 
-
-#### <span id = "access2">接口2: `OAuthGetToken`</span>
+## 接口2: `OAuthGetToken`
 
 输入
 
@@ -68,7 +62,7 @@ Sample
 
 Sample
 
-```
+```json
 {
   "command": "OAuthGetToken",
   "params": {
@@ -79,9 +73,7 @@ Sample
 
 返回结果，JSON格式
 
-- data { JSON }
-
-```
+```json
 {
   "status": 0,
   "data": {
@@ -93,8 +85,7 @@ Sample
 }
 ```
 
-
-#### <span id = "access3">接口3: `OAuthRefresh`</span>
+## 接口3: `OAuthRefresh`
 
 输入 userAuth
 
@@ -113,21 +104,21 @@ Sample
 
 输出 userAuth
 
-* - status {Number} 接口状态
-* - data {Object}
-* - data.userId 授权用户ID
-* - data.userToken 授权token
-* - data.refreshToken 刷新用的token
-* - data.expiredTime {Number} 时间戳，单位秒
-* - data.ext1 {String} 扩展字段
-* - data.ext2 {String} 扩展字段
-* - data.ext3 {String} 扩展字段
-* - data.ext4 {String} 扩展字段
-* - data.ext5 {String} 扩展字段
+* status {Number} 接口状态
+* data {Object}
+* data.userId 授权用户ID
+* data.userToken 授权token
+* data.refreshToken 刷新用的token
+* data.expiredTime {Number} 时间戳，单位秒
+* data.ext1 {String} 扩展字段
+* data.ext2 {String} 扩展字段
+* data.ext3 {String} 扩展字段
+* data.ext4 {String} 扩展字段
+* data.ext5 {String} 扩展字段
 
 传入参数
 
-```
+```json
 {
   "command": "OAuthRefresh",
   "params": {
@@ -137,11 +128,10 @@ Sample
   }
 }
 ```
+
 返回结果，JSON格式
 
-- data { JSON }
-
-```
+```json
 {
   "status": 0,
   "data": {

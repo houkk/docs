@@ -1,6 +1,6 @@
 # Rokid.Query
 
-#### Example Request
+## Example Request
 
 ```json
 {
@@ -24,7 +24,8 @@
 }
 ```
 
-#### Example Response
+## Example Response
+
 ```json
 {
   "header": {

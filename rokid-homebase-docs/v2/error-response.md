@@ -1,4 +1,4 @@
-### 当发生了错误
+# 当发生了错误
 
 若琪会使用 Skill 的错误消息告知用户发生了什么错误，并如何解决该错误；如果 Skill 没有返回标准的错误格式，若琪将无法告知用户如何解决问题。
 
@@ -19,7 +19,7 @@
 }
 ```
 
-#### Error Payload
+## Error Payload
 
 字段名 | 类型 | 描述
 --- | --- | ---
@@ -28,7 +28,7 @@ vendorCode | string | 厂家自有错误码
 message | string | Skill 对发生的错误的详细描述，若琪不会将这个消息展现给用户
 debugInfo | string | 用于调试的必要信息，用于协助问题定位
 
-#### Error Codes 错误码
+## Error Codes 错误码
 
 ErrorCode | 描述
 --- | ---

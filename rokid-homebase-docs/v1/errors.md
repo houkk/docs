@@ -1,6 +1,6 @@
-### 驱动错误代码
+# 驱动错误代码
 
-#### 标准错误
+## 标准错误
 
 - `E_DRIVER_ERROR`  通用错误
 - `E_INVALID_AUTHORIZATION` 授权非法，并且不应该继续使用、刷新
@@ -19,7 +19,7 @@
 - `E_GATEWAY_UNREACHABLE` 无法访问到终端网关
 - `E_SERVER_UNREACHABLE` 无法访问到终端服务器
 
-#### 家庭音乐错误
+## 家庭音乐错误
 
 - `E_MEDIA_RESOURCE_NOT_FOUND` 找不到点播歌曲
 - `E_DRIVER_FAVORITE_NOT_FOUND`: 找不到收藏夹中的点播歌曲

@@ -4,13 +4,19 @@
   "license": "UNLICENSED",
   "scripts": {
     "postinstall": "gitbook install",
-    "build": "gitbook build"
+    "build": "gitbook build",
+    "lint": "node ./scripts/markdownlint.js"
   },
   "dependencies": {
     "gitbook-cli": "^2.3.2",
     "gitbook-plugin-anchor-navigation-ex": "^1.0.10",
     "gitbook-plugin-expandable-chapters-interactive": "^0.1.0",
     "gitbook-plugin-mermaid-gb3": "^2.1.0",
-    "gitbook-plugin-vistors-github": "^1.2.0"
+    "gitbook-plugin-vistors-github": "^1.2.0",
+    "glob": "^7.1.3"
+  },
+  "devDependencies": {
+    "cli-color": "^1.4.0",
+    "markdownlint": "^0.11.0"
   }
 }

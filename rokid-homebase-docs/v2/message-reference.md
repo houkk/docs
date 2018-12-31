@@ -1,56 +1,44 @@
-### 目录
+# 若琪智能家居协议
 
--   [若琪智能家居协议](#若琪智能家居协议)
-  - [请求消息类型](#请求消息类型)
-  - [回复消息类型](#回复消息类型)
-  - [消息体](#消息体)  
--   [示例](#示例)
-  - [一个控制请求](#一个控制请求)
-  - [一个控制成功的返回](#一个控制成功的返回)
-  - [当发生了错误时的一个返回](#当发生了错误时的一个返回)
+## 请求消息类型
 
-
-### 若琪智能家居协议
-
-#### 请求消息类型
-
-##### 命令 Directives
+### 命令 Directives
 
 由若琪主动向 Skill 发起的请求，可以是 Skill 开放的 HTTP 服务，或者是 JSON RPC over TCP 等
 
--   Rokid.Discovery: 搜索终端
--   Rokid.Control: 终端控制，如"帮我打开客厅灯"
--   Rokid.Query: 终端状态查询，如"现在家里门锁了吗"（暂不支持）
+- Rokid.Discovery: 搜索终端
+- Rokid.Control: 终端控制，如"帮我打开客厅灯"
+- Rokid.Query: 终端状态查询，如"现在家里门锁了吗"（暂不支持）
 
 Skill 对于若琪命令的回复需要使用 Responses所定义的消息类型，否则若琪会认为本次消息发送失败；
 
 > 当前版本尚不支持向若琪问询终端状态
 
-##### 事件 Events
+### 事件 Events
 
 由 Skill 主动向若琪发起的请求，只能通过 Rokid EventGateway 开放的 HTTP服务使用
 
--   Rokid.AsyncResponse: 当 Skill 认为终端控制、终端发现可能需要超过 3秒的时间来完成时，可以推迟回复
--   Rokid.ChangeReport: 终端状态变更，如灯被手动打开了
+- Rokid.AsyncResponse: 当 Skill 认为终端控制、终端发现可能需要超过 3秒的时间来完成时，可以推迟回复
+- Rokid.ChangeReport: 终端状态变更，如灯被手动打开了
 
 > 当前版本尚不支持事件推送
 
-#### 回复消息类型
+## 回复消息类型
 
-##### 回复 Responses
+### 回复 Responses
 
 Skill 回复若琪发起的命令
 
 所有回复应该在 3 秒内返回，如果 Skill认为本次操作需要更长的时间，应该考虑使用 DeferredResponse来向若琪告知会在一定时间内使用 AsyncResponse 回复若琪
 
--   Response: 普通的命令回复，包含终端的最新状态
--   DiscoveryResponse: 终端发现命名空间的回复，需要包含终端所有应有的信息
--   ErrorResponse: 发生错误时的回复，包含一个错误码和一条描述错误的消息
--   DeferredResponse: 表示这个操作会超过2秒，需要在指定时间内使用 AsyncResponse 事件通知 Rokid EventGateway
+- Response: 普通的命令回复，包含终端的最新状态
+- DiscoveryResponse: 终端发现命名空间的回复，需要包含终端所有应有的信息
+- ErrorResponse: 发生错误时的回复，包含一个错误码和一条描述错误的消息
+- DeferredResponse: 表示这个操作会超过2秒，需要在指定时间内使用 AsyncResponse 事件通知 Rokid EventGateway
 
-#### 消息体
+## 消息体
 
-##### Header Object
+### Header Object
 
 通用的必需字段
 
@@ -62,25 +50,24 @@ name | `string` | 本次消息的名称，如在 Rokid.Control 的命名空间�
 payloadVersion | `enum` | 本消息的 Payload 定义版本，当前只支持 `v1`
 authorization | Authorization Object | 本消息的认证信息，只有请求消息才需要这个字段，回复消息不需要
 
-###### Authorization Object
+#### Authorization Object
 
 字段名 | 类型 | 描述
 --- | --- | ---
 type | `string` | 通常为 BearerToken
 token | `string` | 从若琪获取的 Token 或者若琪从 Skill 方获取的 Token
 
-##### Endpoint Object
+### Endpoint Object
 
 本次消息的目标终端描述信息如 endpointId 和 additionalInfo
 
-##### Payload Object
+### Payload Object
 
 根据消息类型决定内容，像控制请求的期望值等
 
-### 示例
+## 示例
 
-#### 一个搜索设备请求
-
+### 一个搜索设备请求
 
 ``` {.json}
 {
@@ -98,9 +85,7 @@ token | `string` | 从若琪获取的 Token 或者若琪从 Skill 方获取的 T
 }
 ```
 
-#### 一个搜索设备成功的返回
-
-
+### 一个搜索设备成功的返回
 
 ``` {.json}
 {
@@ -154,7 +139,7 @@ token | `string` | 从若琪获取的 Token 或者若琪从 Skill 方获取的 T
 
 ```
 
-#### 一个控制请求
+### 一个控制请求
 
 ``` {.json}
 {
@@ -187,7 +172,7 @@ token | `string` | 从若琪获取的 Token 或者若琪从 Skill 方获取的 T
 }
 ```
 
-#### 一个控制成功的返回
+### 一个控制成功的返回
 
 ``` {.json}
 {
@@ -211,7 +196,7 @@ token | `string` | 从若琪获取的 Token 或者若琪从 Skill 方获取的 T
 }
 ```
 
-#### 当发生了错误时的一个返回
+### 当发生了错误时的一个返回
 
 若琪会使用 Skill的错误消息告知用户发生了什么错误，并如何解决该错误；如果 Skill没有返回标准的错误格式，若琪将无法告知用户如何解决问题。
 
